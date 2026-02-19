@@ -1,0 +1,66 @@
+# Maven / Build artifacts
+target/
+*.log
+*.class
+*.jar
+*.war
+*.ear
+
+# IDE files (IntelliJ, Eclipse, VS Code)
+.idea/
+*.iml
+*.iws
+.classpath
+.project
+.settings/
+.vscode/
+bin/
+
+# OS generated files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+
+# Temporary / cache files
+*.tmp
+*.bak
+*.swp
+*~.nib
+.DS_Store
+
+# Logs & reports
+logs/
+test-output/
+surefire-reports/
+extent-reports/
+
+# Selenium / WebDriver downloads & temp
+webdriver/
+chromedriver*
+geckodriver*
+msedgedriver*
+IEDriverServer*
+operadriver*
+
+# Sensitive / personal files (never commit!)
+config.properties
+credentials.json
+*.key
+*.pem
+*.secret
+.env
+*.env.local
+
+# Database dumps or temp files
+*.sql
+*.dump
+
+# Node modules or frontend artifacts (if you add React later)
+node_modules/
+dist/
+build/
+
+# Keep these (useful for others)
+!README.md
+!src/test/resources/features/
+!src/test/resources/*.feature

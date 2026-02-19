@@ -1,0 +1,12 @@
+<project>
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.bguerradev.qa</groupId>
+    <artifactId>smspy-selenium-automation-framework</artifactId>
+    <version>1.0.0</version>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>API_Testing</module>
+        <module>UI_Testing</module>
+    </modules>
+</project>
