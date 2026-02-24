@@ -1,6 +1,8 @@
 package stepDefinitions;
 
 import api.BaseClient;
+import api.MessageClient;
+import api.UserClient;
 import context.TestContext;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
@@ -46,14 +48,7 @@ public class ApiMessagingSteps {
     public void loginAsUser(String username) {
         String password = ApiStepsBase.getPasswordForUsername(username);
 
-        User loginUser = User.builder()
-                .username(username)
-                .password(password)
-                .build();
-        response = given()
-                .spec(BaseClient.baseSpec)
-                .body(loginUser)
-                .post("/token/");
+        response = UserClient.login(username, password);
 
         response.then().statusCode(200);
         String token = response.jsonPath().getString("access");
@@ -82,12 +77,7 @@ public class ApiMessagingSteps {
         String token = (String) testContext.getScenarioContext().getContext("ACCESS_TOKEN");
         Integer receiverId = (Integer) testContext.getScenarioContext().getContext("RECEIVER_ID");
 
-        response = given()
-                .spec(BaseClient.getAuthSpec(token))
-                .contentType("multipart/form-data")
-                .multiPart("receiver", receiverId.toString())
-                .multiPart("content", content)
-                .post("/messages/send/");
+        response = MessageClient.sendMessage(token, receiverId, content);
 
         response.then()
                 .statusCode(201)
@@ -104,13 +94,8 @@ public class ApiMessagingSteps {
 
         File image = new File("src/test/resources/image_message_placeholder.webp");
 
-        response = given()
-                .spec(BaseClient.getAuthSpec(token))
-                .contentType("multipart/form-data")
-                .multiPart("receiver", receiverId.toString())
-                .multiPart("content", "Test message with image")
-                .multiPart("image", image, ApiStepsBase.getMimeType(image))
-                .post("/messages/send/");
+        response = MessageClient.sendMessageWithImage(token, receiverId, "Test message with image", image,
+                ApiStepsBase.getMimeType(image));
 
         response.then()
                 .statusCode(201)
@@ -162,9 +147,7 @@ public class ApiMessagingSteps {
     public void iSendGetRequestTo(String endpoint) {
         String token = (String) testContext.getScenarioContext().getContext("ACCESS_TOKEN");
 
-        response = given()
-                .spec(BaseClient.getAuthSpec(token))
-                .get(endpoint);
+        response = MessageClient.getMessages(token, endpoint);
     }
 
     @Then("I should see the message I just sent in the list")
@@ -173,7 +156,6 @@ public class ApiMessagingSteps {
         Integer getResponseMessageId = response.jsonPath().getList(".", Message.class).get(0).getId();
 
         Assert.assertEquals(getResponseMessageId, expectedMessageId);
-
 
     }
 
@@ -206,7 +188,8 @@ public class ApiMessagingSteps {
     }
 
     @Then("I should see a message from {string} with content {string} as the most recent in the list")
-    public void iShouldSeeMessageFromSenderWithContentAsTheMostRecentInTheList(String expectedSender, String expectedContent) {
+    public void iShouldSeeMessageFromSenderWithContentAsTheMostRecentInTheList(String expectedSender,
+            String expectedContent) {
         String token = (String) testContext.getScenarioContext().getContext("ACCESS_TOKEN");
 
         response = given()
@@ -263,7 +246,7 @@ public class ApiMessagingSteps {
         response = given()
                 .spec(BaseClient.baseSpec)
                 .contentType("multipart/form-data")
-                .multiPart("receiver" , 2) // must exist
+                .multiPart("receiver", 2) // must exist
                 .multiPart("content", content)
                 .post(endpoint);
     }

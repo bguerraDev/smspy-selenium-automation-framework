@@ -45,6 +45,7 @@ operadriver*
 # Sensitive / personal files (never commit!)
 config.properties
 credentials.json
+config.properties.secret
 *.key
 *.pem
 *.secret
@@ -64,3 +65,10 @@ build/
 !README.md
 !src/test/resources/features/
 !src/test/resources/*.feature
+!config.properties.example
+
+# Allure temporary/downloaded files
+.allure/
+allure-results/
+target/allure-results/
+target/site/allure-maven-plugin/

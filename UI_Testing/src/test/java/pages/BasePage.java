@@ -6,6 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import io.qameta.allure.Step;
 
 import java.io.File;
 import java.time.Duration;
@@ -40,6 +41,7 @@ public abstract class BasePage {
         return wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(locator));
     }
 
+    @Step("Click on element: {0}")
     protected void click(By locator) {
         findElement(locator).click();
     }
@@ -50,6 +52,7 @@ public abstract class BasePage {
         element.sendKeys(text);
     }
 
+    @Step("Get text from {0}")
     protected String getText(By locator) {
         return findElement(locator).getText();
     }
@@ -58,6 +61,7 @@ public abstract class BasePage {
         return findElements(locator);
     }
 
+    @Step("Click receiver user '{0}' in Dropdown component {1}")
     protected void clickUserSelectComponent(String receiver, By locator) {
 
         await()
@@ -86,6 +90,7 @@ public abstract class BasePage {
         }
     }
 
+    @Step("Verify current URL is: {0}")
     protected void verifyCurrentUrl(String expectedUrl) {
         wait.until(ExpectedConditions.urlToBe(expectedUrl));
 
@@ -94,6 +99,7 @@ public abstract class BasePage {
                 "Not on expected page. Expected: " + expectedUrl + " but was: " + actualUrl);
     }
 
+    @Step("Upload file '{0}' to {1}")
     protected void uploadFile(String filePath, By locatorUploadSelector, By locatorSpanSelector) {
         // Locate the hidden input directly
         WebElement fileInput = findElementPresenceToBeLocated(locatorUploadSelector);
@@ -157,10 +163,12 @@ public abstract class BasePage {
                         WebElement toast = driver.findElement(toastLocator);
                         boolean visible = toast.isDisplayed();
                         click(Constants.TOAST_CLOSE_BUTTON);
-                        System.out.println("Toast visible? " + visible + " | Location: " + toast.getLocation() + " | Size: " + toast.getSize());
+                        System.out.println("Toast visible? " + visible + " | Location: " + toast.getLocation()
+                                + " | Size: " + toast.getSize());
                         return !visible;
                     } catch (Exception e) {
-                        System.out.println("Toast check exception: " + e.getClass().getSimpleName() + " — assuming disappeared");
+                        System.out.println(
+                                "Toast check exception: " + e.getClass().getSimpleName() + " — assuming disappeared");
                         return true;
                     }
                 });
