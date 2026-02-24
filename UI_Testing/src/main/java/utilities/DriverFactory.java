@@ -26,15 +26,19 @@ public class DriverFactory {
                 chromeOptions.setExperimentalOption("prefs", prefs);
 
                 // Additional flags to kill popups & credential prompts
-                chromeOptions.addArguments("--disable-infobars");                  // no "Chrome is being controlled" bar
-                chromeOptions.addArguments("--disable-notifications");             // no notifications
-                chromeOptions.addArguments("--disable-popup-blocking");            // allow controlled popups
-                chromeOptions.addArguments("--disable-save-password-bubble");      // kill save password popup
-                chromeOptions.addArguments("--disable-blink-features=Autofill");   // disable autofill entirely
-                chromeOptions.addArguments("--password-store=basic");             // force basic store (no sync)
+                chromeOptions.addArguments("--disable-infobars"); // no "Chrome is being controlled" bar
+                chromeOptions.addArguments("--disable-notifications"); // no notifications
+                chromeOptions.addArguments("--disable-popup-blocking"); // allow controlled popups
+                chromeOptions.addArguments("--disable-save-password-bubble"); // kill save password popup
+                chromeOptions.addArguments("--disable-blink-features=Autofill"); // disable autofill entirely
+                chromeOptions.addArguments("--password-store=basic"); // force basic store (no sync)
 
                 // Optional: Headless for CI
-                // chromeOptions.addArguments("--headless=new");
+                if (ConfigReader.isHeadless()) {
+                    chromeOptions.addArguments("--headless=new");
+                    chromeOptions.addArguments("--disable-gpu");
+                    chromeOptions.addArguments("--window-size=1920,1080");
+                }
 
                 return new ChromeDriver(chromeOptions);
 

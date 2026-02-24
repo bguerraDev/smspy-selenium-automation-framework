@@ -13,22 +13,26 @@ import java.util.List;
 public class DriverFactory {
 
     public static WebDriver createDriver(String browserName) {
-        //ChromeOptions chromeOptions = new ChromeOptions();
-        // options.addArguments("--headless=new");   // uncomment for CI
+        // ChromeOptions chromeOptions = new ChromeOptions();
+        // options.addArguments("--headless=new"); // uncomment for CI
         // options.addArguments("--disable-gpu");
-        /*return switch (browserName.toLowerCase().trim()) {
-            case "chrome" -> ChromeOptions
-            case "firefox" -> new FirefoxDriver();
-            case "edge" -> new EdgeDriver();
-            default ->
-        };*/
+        /*
+         * return switch (browserName.toLowerCase().trim()) {
+         * case "chrome" -> ChromeOptions
+         * case "firefox" -> new FirefoxDriver();
+         * case "edge" -> new EdgeDriver();
+         * default ->
+         * };
+         */
 
         switch (browserName.toLowerCase().trim()) {
             case "chrome":
                 ChromeOptions chromeOptions = new ChromeOptions();
-                chromeOptions.setExperimentalOption("excludeSwitches",
-                        List.of("disable-popup-blocking"));
-                return new ChromeDriver();
+                if (ConfigReader.isHeadless()) {
+                    chromeOptions.addArguments("--headless=new");
+                    chromeOptions.addArguments("--disable-gpu");
+                }
+                return new ChromeDriver(chromeOptions);
             case "firefox":
                 return new FirefoxDriver();
             case "edge":
