@@ -1,0 +1,27 @@
+# API Configuration (TEMPLATE - Copy to config.properties.secret for local runs)
+env=render
+browser=chrome
+api.base.url=https://smspy-backend-pre.onrender.com/api/
+
+# DB Neon (Dummy values)
+db.url=jdbc:postgresql://...
+db.user=dummy_db_user
+db.password=dummy_db_password
+
+# Known test users + passwords (Dummy values)
+test.user.bryan1.username=bryan1
+test.user.bryan1.password=********
+
+test.user.bryan2.username=bryan2
+test.user.bryan2.password=********
+
+test.user.John_Doe.username=John Doe
+test.user.John_Doe.password=********
+
+test.user.Bryan_Guerra.username=Bryan Guerra
+test.user.Bryan_Guerra.password=********
+
+test.user.smspy_test_user.username=smspy_test_user
+test.user.smspy_test_user.password=********
+
+test.user.general.password=********
