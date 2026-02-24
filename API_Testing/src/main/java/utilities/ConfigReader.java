@@ -112,6 +112,10 @@ public final class ConfigReader {
     }
 
     public static boolean isHeadless() {
+        String headless = System.getProperty("browser.headless");
+        if (headless != null && !headless.isBlank()) {
+            return Boolean.parseBoolean(headless.trim());
+        }
         return Boolean.parseBoolean(getProperty("headless", "false"));
     }
 }
