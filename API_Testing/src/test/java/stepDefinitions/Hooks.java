@@ -45,10 +45,10 @@ public class Hooks {
 
     @After
     public void tearDown(Scenario scenario) {
-        if (scenario.isFailed()) {
+/*        if (scenario.isFailed()) {
             byte[] screenshot = ((TakesScreenshot) testContext.getDriver()).getScreenshotAs(OutputType.BYTES);
             scenario.attach(screenshot, "image/png", "Failed screenshot");
-        }
+        }*/
         testContext.removeDriver();
         testContext.clearScenarioContext();
     }

@@ -7,11 +7,12 @@ import org.testng.annotations.DataProvider;
 @CucumberOptions(
         features = "src/test/resources/features",
         glue = {"stepDefinitions", "context"},
-        tags = "@multiple-users",
+        tags = "@api-auth",
         plugin = {
                 "pretty",
                 "html:target/cucumber-reports.html",
-                "json:target/cucumber.json"},
+                "json:target/cucumber.json",
+                "io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm"},
         monochrome = true
 )
 public class TestRunner extends AbstractTestNGCucumberTests {
