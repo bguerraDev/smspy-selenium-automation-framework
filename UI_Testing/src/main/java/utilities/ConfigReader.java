@@ -48,20 +48,22 @@ public final class ConfigReader {
     public static String getProperty(String key, String defaultValue) {
         // 1. Highest priority → explicit system property
         String value = System.getProperty(key);
-        if (value != null && !value.isBlank()) return value.trim();
+        if (value != null && !value.isBlank())
+            return value.trim();
 
         // 2. Environment-prefixed property (most common usage)
         String envKey = CURRENT_ENV + "." + key;
         value = props.getProperty(envKey);
-        if (value != null && !value.isBlank()) return value.trim();
+        if (value != null && !value.isBlank())
+            return value.trim();
 
         // 3. Fallback to plain key (global settings)
         value = props.getProperty(key);
-        if (value != null && !value.isBlank()) return value.trim();
+        if (value != null && !value.isBlank())
+            return value.trim();
 
         // 4. Default value or fail-fast
-        return defaultValue != null ? defaultValue :
-                missingKeyException(key, envKey);
+        return defaultValue != null ? defaultValue : missingKeyException(key, envKey);
     }
 
     private static String missingKeyException(String key, String envKey) {
@@ -69,7 +71,6 @@ public final class ConfigReader {
                 "Missing required configuration → key: '%s' (tried: '%s', '%s', plain '%s')"
                         .formatted(key, key, envKey, key));
     }
-
 
     public static String getBaseUrl() {
         return getProperty("base.url");
@@ -88,6 +89,10 @@ public final class ConfigReader {
     }
 
     public static boolean isHeadless() {
+        String headless = System.getProperty("browser.headless");
+        if (headless != null && !headless.isBlank()) {
+            return Boolean.parseBoolean(headless.trim());
+        }
         return Boolean.parseBoolean(getProperty("headless", "false"));
     }
 }
