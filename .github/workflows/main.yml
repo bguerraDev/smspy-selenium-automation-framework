@@ -23,10 +23,27 @@ jobs:
           distribution: 'temurin'
           cache: 'maven'
 
-      - name: Run Tests
+      - name: Run Tests (all suites)
         env:
+          DB_URL: ${{ secrets.DB_URL }}
+          DB_USER: ${{ secrets.DB_USER }}
           DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
-        run: mvn clean test -Dbrowser.headless=true -DDB_PASSWORD=$DB_PASSWORD
+          BRYAN1_PASSWORD: ${{ secrets.BRYAN1_PASSWORD }}
+          BRYAN2_PASSWORD: ${{ secrets.BRYAN2_PASSWORD }}
+          JOHN_DOE_PASSWORD: ${{ secrets.JOHN_DOE_PASSWORD }}
+          BRYAN_GUERRA_PASSWORD: ${{ secrets.BRYAN_GUERRA_PASSWORD }}
+          SMSPY_TEST_USER_PASSWORD: ${{ secrets.SMSPY_TEST_USER_PASSWORD }}
+          GENERAL_PASSWORD: ${{ secrets.GENERAL_PASSWORD }}
+        run: mvn clean test -Dbrowser.headless=true \
+          -Ddb.url=$DB_URL \
+          -Ddb.user=$DB_USER \
+          -Ddb.password=$DB_PASSWORD \
+          -Dtest.user.bryan1.password=$BRYAN1_PASSWORD \
+          -Dtest.user.bryan2.password=$BRYAN2_PASSWORD \
+          -Dtest.user.John_Doe.password=$JOHN_DOE_PASSWORD \
+          -Dtest.user.Bryan_Guerra.password=$BRYAN_GUERRA_PASSWORD \
+          -Dtest.user.smspy_test_user.password=$SMSPY_TEST_USER_PASSWORD \
+          -Dtest.user.general.password=$GENERAL_PASSWORD
 
       - name: Get Allure History
         uses: actions/checkout@v4
@@ -51,7 +68,6 @@ jobs:
           allure_results: allure-results
           allure_history: allure-history
           keep_reports: 20
-          # first run without history
           generate_only: true
 
       - name: Deploy Allure Report to GitHub Pages
@@ -61,7 +77,6 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: gh-pages
           publish_dir: allure-history
-          # create branch if missing
           force_orphan: true
 
       - name: Upload Artifacts on Failure
