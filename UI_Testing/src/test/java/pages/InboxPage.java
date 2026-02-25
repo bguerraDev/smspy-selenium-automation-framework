@@ -14,7 +14,7 @@ public class InboxPage extends BasePage {
 
     public InboxPage(WebDriver driver) {
         super(driver);
-        verifyCurrentUrl(ConfigReader.getProperty(Constants.getUrlMessagesInbox()));
+        verifyCurrentUrl(ConfigReader.getProperty(BasePage.getMessagesInboxUrl()));
     }
 
     @Step("Check if message title is displayed")

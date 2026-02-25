@@ -14,7 +14,7 @@ public class ComposeMessagePage extends BasePage {
 
     public ComposeMessagePage(WebDriver driver) {
         super(driver);
-        verifyCurrentUrl(ConfigReader.getProperty(Constants.getUrlMessagesSend()));
+        verifyCurrentUrl(ConfigReader.getProperty(BasePage.getMessagesSendUrl()));
     }
 
     @Step("Select receiver: {0}")

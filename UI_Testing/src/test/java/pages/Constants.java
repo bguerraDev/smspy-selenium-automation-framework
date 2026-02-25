@@ -1,28 +1,8 @@
 package pages;
 
 import org.openqa.selenium.By;
-import utilities.ConfigReader;
 
 public class Constants {
-
-    /**
-     * URLs from smspyfrontend
-     */
-    public static String getUrlBase() {
-        return ConfigReader.getBaseUrlLogin();
-    }
-
-    public static String getUrlMessagesInbox() {
-        return ConfigReader.getBaseUrlMessages();
-    }
-
-    public static String getUrlMessagesSend() {
-        return ConfigReader.getBaseUrlMessagesSend();
-    }
-
-    public static String getUrlProfile() {
-        return ConfigReader.getBaseUrlProfile();
-    }
 
     /**
      * Selectors

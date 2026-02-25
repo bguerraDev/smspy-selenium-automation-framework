@@ -7,6 +7,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import io.qameta.allure.Step;
+import utilities.ConfigReader;
 
 import java.io.File;
 import java.time.Duration;
@@ -126,6 +127,22 @@ public abstract class BasePage {
         } catch (Exception e) {
             return false;
         }
+    }
+
+    public static String getLoginUrl() {
+        return ConfigReader.getBaseUrlLogin();
+    }
+
+    public static String getMessagesInboxUrl() {
+        return ConfigReader.getBaseUrlMessages();
+    }
+
+    public static String getMessagesSendUrl() {
+        return ConfigReader.getBaseUrlMessagesSend();
+    }
+
+    public static String getProfileUrl() {
+        return ConfigReader.getBaseUrlProfile();
     }
 
     /**
