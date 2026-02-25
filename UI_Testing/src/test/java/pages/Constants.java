@@ -8,10 +8,21 @@ public class Constants {
     /**
      * URLs from smspyfrontend
      */
-    public static final String URL_BASE = ConfigReader.getBaseUrlLogin();
-    public static final String URL_MESSAGES_INBOX = ConfigReader.getBaseUrlMessages();
-    public static final String URL_MESSAGES_SEND = ConfigReader.getBaseUrlMessagesSend();
-    public static final String URL_PROFILE = ConfigReader.getBaseUrlProfile();
+    public static String getUrlBase() {
+        return ConfigReader.getBaseUrlLogin();
+    }
+
+    public static String getUrlMessagesInbox() {
+        return ConfigReader.getBaseUrlMessages();
+    }
+
+    public static String getUrlMessagesSend() {
+        return ConfigReader.getBaseUrlMessagesSend();
+    }
+
+    public static String getUrlProfile() {
+        return ConfigReader.getBaseUrlProfile();
+    }
 
     /**
      * Selectors

@@ -20,7 +20,7 @@ public final class ConfigReader {
         loadFromFile("config.properties.example");
 
         // Try to load secret (optional)
-        loadFromFile("config.properties.secret");
+        loadFromFile("config.properties");
 
         // If nothing loaded, it's OK — use -D or defaults
         if (props.isEmpty()) {
