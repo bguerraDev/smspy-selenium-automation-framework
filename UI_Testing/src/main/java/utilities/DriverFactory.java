@@ -6,7 +6,9 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class DriverFactory {
@@ -35,9 +37,15 @@ public class DriverFactory {
 
                 // Optional: Headless for CI
                 if (ConfigReader.isHeadless()) {
-                    chromeOptions.addArguments("--headless=new");
+                    chromeOptions.addArguments("--headless");
+                    chromeOptions.addArguments("--disable-blink-features=AutomationControlled");
                     chromeOptions.addArguments("--disable-gpu");
+                    chromeOptions.addArguments("--no-sandbox");
+                    chromeOptions.addArguments("--disable-dev-shm-usage");
+                    chromeOptions.addArguments("--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36");
                     chromeOptions.addArguments("--window-size=1920,1080");
+                    chromeOptions.setExperimentalOption("excludeSwitches", List.of("enable-automation"));
+                    chromeOptions.setExperimentalOption("useAutomationExtension", false);
                 }
 
                 return new ChromeDriver(chromeOptions);

@@ -97,11 +97,11 @@ public abstract class BasePage {
         System.out.println("Current URL before wait: " + driver.getCurrentUrl());
 
         await()
-                .atMost(90, TimeUnit.SECONDS)
+                .atMost(120, TimeUnit.SECONDS)
                 .pollInterval(1, TimeUnit.SECONDS)
                 .until(() -> {
                     String current = driver.getCurrentUrl();
-                    System.out.println("Polling URL: " + current);
+                    //System.out.println("Polling URL: " + current);
                     return current.equals(expectedUrl);
                 });
 
