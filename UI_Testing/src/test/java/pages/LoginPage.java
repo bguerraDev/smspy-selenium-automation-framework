@@ -12,8 +12,8 @@ public class LoginPage extends BasePage {
 
     @Step("Open Login Page")
     public LoginPage open() {
-        driver.get(ConfigReader.getProperty(BasePage.getLoginUrl()));
-        verifyCurrentUrl(ConfigReader.getProperty(BasePage.getLoginUrl()));
+        driver.get(BasePage.getLoginUrl());
+        verifyCurrentUrl(BasePage.getLoginUrl());
         return this;
     }
 

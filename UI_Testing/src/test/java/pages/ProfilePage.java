@@ -8,7 +8,7 @@ public class ProfilePage extends BasePage {
 
     public ProfilePage(WebDriver driver) {
         super(driver);
-        verifyCurrentUrl(ConfigReader.getProperty(BasePage.getProfileUrl()));
+        verifyCurrentUrl(BasePage.getProfileUrl());
     }
 
     @Step("Upload new avatar: {0}")
