@@ -77,7 +77,7 @@ public final class ConfigReader {
     }
 
     public static String getBrowser() {
-        return getProperty("browser");
+        return getProperty("browser", "chrome");
     }
 
     public static String getUsername() {
@@ -93,6 +93,6 @@ public final class ConfigReader {
         if (headless != null && !headless.isBlank()) {
             return Boolean.parseBoolean(headless.trim());
         }
-        return Boolean.parseBoolean(getProperty("headless", "false"));
+        return Boolean.parseBoolean(getProperty("headless", "true"));
     }
 }

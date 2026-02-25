@@ -1,6 +1,7 @@
 # API Configuration (TEMPLATE - Copy to config.properties.secret for local runs)
 env=render
 browser=chrome
+headless=false
 api.base.url=https://smspy-backend-pre.onrender.com/api/
 
 # DB Neon (Dummy values)
