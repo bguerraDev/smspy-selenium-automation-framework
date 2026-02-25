@@ -56,20 +56,25 @@ public final class ConfigReader {
     }
 
     public static String getProperty(String key, String defaultValue) {
-        // Highest priority: system property (-D from CI)
         String value = System.getProperty(key);
         if (value != null && !value.isBlank()) return value.trim();
 
-        // Environment-prefixed
         String envKey = CURRENT_ENV + "." + key;
         value = props.getProperty(envKey);
         if (value != null && !value.isBlank()) return value.trim();
 
-        // Plain key
         value = props.getProperty(key);
         if (value != null && !value.isBlank()) return value.trim();
 
-        // Default (for CI safety)
+        // For URLs - use default instead of throw
+        if (key.contains("url")) {
+            if (key.equals("base.url.login")) return "https://smspy-frontend-pre.onrender.com/";
+            if (key.equals("base.url.messages")) return "https://smspy-frontend-pre.onrender.com/messages";
+            if (key.equals("base.url.messages.send")) return "https://smspy-frontend-pre.onrender.com/messages/send";
+            if (key.equals("base.url.profile")) return "https://smspy-frontend-pre.onrender.com/profile";
+            if (key.equals("api.base.url")) return "https://smspy-backend-pre.onrender.com/api/";
+        }
+
         return defaultValue != null ? defaultValue : missingKeyException(key, envKey);
     }
 
