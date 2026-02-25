@@ -26,7 +26,7 @@ public class UiAuthSteps {
     @When("I login as {string}")
     public void iLoginAs(String username) {
         loginPage = testContext.getLoginPage();
-        String password = ConfigReader.getProperty("bryan1.password"); // TODO only for this scenario . Is not a good practice
+        String password = ConfigReader.getBryan1Password(); // TODO only for this scenario . Is not a good practice
         loginPage.login(username, password);
     }
 }

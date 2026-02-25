@@ -79,16 +79,8 @@ public final class ConfigReader {
                         .formatted(key, key, envKey, key));
     }
 
-    public static String getBaseUrl() {
-        return getProperty("base.url");
-    }
-
-    public static String getUsername() {
-        return getProperty("username");
-    }
-
-    public static String getPassword() {
-        return getProperty("password");
+    public static String getBrowser() {
+        return getProperty("browser", "chrome");
     }
 
     // Add specific getters with CI-safe defaults
@@ -96,11 +88,27 @@ public final class ConfigReader {
         return getProperty("api.base.url", "https://smspy-backend-pre.onrender.com/api/");
     }
 
-    public static String getBrowser() {
-        return getProperty("browser", "chrome");
+    public static String getBaseUrlLogin() {
+        return getProperty("base.url.login", "https://smspy-frontend-pre.onrender.com/");
+    }
+
+    public static String getBaseUrlMessages() {
+        return getProperty("base.url.messages", "https://smspy-frontend-pre.onrender.com/messages");
+    }
+
+    public static String getBaseUrlMessagesSend() {
+        return getProperty("base.url.messages.send", "https://smspy-frontend-pre.onrender.com/messages/send");
+    }
+
+    public static String getBaseUrlProfile() {
+        return getProperty("base.url.profile", "https://smspy-frontend-pre.onrender.com/profile");
     }
 
     public static boolean isHeadless() {
         return Boolean.parseBoolean(getProperty("headless", "true"));
+    }
+
+    public static String getBryan1Password() {
+        return getProperty("bryan1.password", "dummy_password_for_ci");
     }
 }
