@@ -44,7 +44,8 @@ jobs:
             -Dtest.user.John_Doe.password=$JOHN_DOE_PASSWORD \
             -Dtest.user.Bryan_Guerra.password=$BRYAN_GUERRA_PASSWORD \
             -Dtest.user.smspy_test_user.password=$SMSPY_TEST_USER_PASSWORD \
-            -Dtest.user.general.password=$GENERAL_PASSWORD
+            -Dtest.user.general.password=$GENERAL_PASSWORD \
+            -Dstaging.bryan1.password=$STAGING_BRYAN1_PASSWORD
 
       - name: Get Allure History
         uses: actions/checkout@v4

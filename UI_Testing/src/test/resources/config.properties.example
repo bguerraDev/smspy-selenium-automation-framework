@@ -1,0 +1,16 @@
+# Default Environment
+env=staging
+browser=chrome
+headless=true
+
+# Staging Environment
+staging.api.base.url=https://smspy-backend-pre.onrender.com/api/protected/
+staging.base.url.login=https://smspy-frontend-pre.onrender.com/
+staging.base.url.messages=https://smspy-frontend-pre.onrender.com/messages
+staging.base.url.messages.send=https://smspy-frontend-pre.onrender.com/messages/send
+staging.base.url.profile=https://smspy-frontend-pre.onrender.com/profile
+
+staging.bryan1.password=***
+
+# Observability
+screen.recording.enabled=false
