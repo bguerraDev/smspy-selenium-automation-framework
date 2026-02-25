@@ -7,7 +7,7 @@ import java.util.Properties;
 public final class ConfigReader {
 
     private static final Properties props = new Properties();
-    private static final String DEFAULT_ENV = "staging";
+    private static final String DEFAULT_ENV = "render";
     private static final String CURRENT_ENV;
 
     static {

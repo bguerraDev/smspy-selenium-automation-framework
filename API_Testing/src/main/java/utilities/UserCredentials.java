@@ -4,7 +4,7 @@ import lombok.Getter;
 
 public enum UserCredentials {
 
-    STANDARD("standard", "staging.username", "staging.password"),
+    STANDARD("standard", "render.username", "render.password"),
     PROBLEM("problem", "uat.username", "uat.password"),
     PERFORMANCE_GLITCH("performance_glitch", "prod.username", "prod.password");
 
