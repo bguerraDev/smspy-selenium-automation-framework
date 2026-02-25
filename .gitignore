@@ -77,3 +77,6 @@ target/site/allure-maven-plugin/
 Doc/GitHub_Settings_Guide.md
 Doc/Study_Guide.md
 Doc/Interview_Questions (DevOpsQA).md
+
+# Exclude security feature from CI (intentional failures)
+**/ApiSecurity.feature
