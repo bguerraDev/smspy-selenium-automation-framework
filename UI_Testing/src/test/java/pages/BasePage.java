@@ -23,7 +23,7 @@ public abstract class BasePage {
 
     public BasePage(WebDriver driver) {
         this.driver = driver;
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(20));
     }
 
     protected WebElement findElement(By locator) {
@@ -66,7 +66,7 @@ public abstract class BasePage {
     protected void clickUserSelectComponent(String receiver, By locator) {
 
         await()
-                .atMost(10, TimeUnit.SECONDS)
+                .atMost(20, TimeUnit.SECONDS)
                 .pollInterval(200, TimeUnit.MILLISECONDS)
                 .until(() -> {
                     List<WebElement> options = findElements(locator);

@@ -15,8 +15,8 @@ public class WarmUpBackend {
         String pingUrl = ConfigReader.getProperty("api.base.url");
         System.out.println("Warming up Render backend via ping: " + pingUrl);
         await()
-                .atMost(120, TimeUnit.SECONDS)
-                .pollInterval(3, TimeUnit.SECONDS)
+                .atMost(180, TimeUnit.SECONDS)
+                .pollInterval(5, TimeUnit.SECONDS)
                 .until(() -> {
 
                     try {
