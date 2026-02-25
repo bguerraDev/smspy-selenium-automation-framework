@@ -26,13 +26,12 @@ jobs:
       - name: Run Tests
         env:
           DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
-          API_TOKEN: ${{ secrets.API_TOKEN }}
-        run: mvn clean test -Dbrowser.headless=true -DDB_PASSWORD=$DB_PASSWORD -DAPI_TOKEN=$API_TOKEN
+        run: mvn clean test -Dbrowser.headless=true -DDB_PASSWORD=$DB_PASSWORD
 
       - name: Get Allure History
         uses: actions/checkout@v4
-        if: always()
         continue-on-error: true
+        if: always()
         with:
           ref: gh-pages
           path: gh-pages
@@ -43,6 +42,7 @@ jobs:
           mkdir -p allure-results
           [ -d API_Testing/target/allure-results ] && cp -r API_Testing/target/allure-results/* allure-results/ || echo "No API results"
           [ -d UI_Testing/target/allure-results ] && cp -r UI_Testing/target/allure-results/* allure-results/ || echo "No UI results"
+          [ -d gh-pages/allure-history ] && cp -r gh-pages/allure-history/* allure-results/ || echo "No previous history"
 
       - name: Generate Allure Report
         uses: simple-elf/allure-report-action@master
@@ -51,6 +51,8 @@ jobs:
           allure_results: allure-results
           allure_history: allure-history
           keep_reports: 20
+          # first run without history
+          generate_only: true
 
       - name: Deploy Allure Report to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
@@ -59,6 +61,8 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: gh-pages
           publish_dir: allure-history
+          # create branch if missing
+          force_orphan: true
 
       - name: Upload Artifacts on Failure
         uses: actions/upload-artifact@v4

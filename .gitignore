@@ -74,6 +74,6 @@ target/allure-results/
 target/site/allure-maven-plugin/
 
 #Material_Study
-GitHub_Settings_Guide.md
-Study_Guide.md
-Interview_Questions (DevOpsQA).md
+Doc/GitHub_Settings_Guide.md
+Doc/Study_Guide.md
+Doc/Interview_Questions (DevOpsQA).md
