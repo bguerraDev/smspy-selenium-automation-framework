@@ -24,7 +24,7 @@ public class BaseClient {
 
     static {
         // Read config
-        String baseUrl = ConfigReader.getProperty("api.base.url");
+        String baseUrl = ConfigReader.getApiBaseUrl();
 
         // Base Spec (Public)
         baseSpec = new RequestSpecBuilder()

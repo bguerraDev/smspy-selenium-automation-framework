@@ -51,23 +51,20 @@ public final class ConfigReader {
     }
 
     public static String getProperty(String key, String defaultValue) {
-        // 1. Highest priority → explicit system property
+        // Highest priority: system property (-D from CI)
         String value = System.getProperty(key);
-        if (value != null && !value.isBlank())
-            return value.trim();
+        if (value != null && !value.isBlank()) return value.trim();
 
-        // 2. Environment-prefixed property (most common usage)
+        // Environment-prefixed
         String envKey = CURRENT_ENV + "." + key;
         value = props.getProperty(envKey);
-        if (value != null && !value.isBlank())
-            return value.trim();
+        if (value != null && !value.isBlank()) return value.trim();
 
-        // 3. Fallback to plain key (global settings)
+        // Plain key
         value = props.getProperty(key);
-        if (value != null && !value.isBlank())
-            return value.trim();
+        if (value != null && !value.isBlank()) return value.trim();
 
-        // 4. Default value or fail-fast
+        // Default (for CI safety)
         return defaultValue != null ? defaultValue : missingKeyException(key, envKey);
     }
 
@@ -109,6 +106,23 @@ public final class ConfigReader {
 
     public static String getPassword() {
         return getProperty("password");
+    }
+
+    // Add specific getters with CI-safe defaults
+    public static String getApiBaseUrl() {
+        return getProperty("api.base.url", "https://smspy-backend-pre.onrender.com/api/");
+    }
+
+    public static String getDbUrl() {
+        return getProperty("db.url", "jdbc:postgresql://localhost:5432/dummy");
+    }
+
+    public static String getDbUser() {
+        return getProperty("db.user", "dummy_user");
+    }
+
+    public static String getDbPassword() {
+        return getProperty("db.password", "dummy_pass");
     }
 
     public static boolean isHeadless() {

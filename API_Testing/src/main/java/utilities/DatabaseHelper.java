@@ -6,9 +6,9 @@ import java.util.List;
 
 public class DatabaseHelper {
 
-    private static final String DB_URL = ConfigReader.getProperty("db.url");
-    private static final String DB_USER = ConfigReader.getProperty("db.user");
-    private static final String DB_PASS = ConfigReader.getProperty("db.password");
+    private static final String DB_URL = ConfigReader.getDbUrl();
+    private static final String DB_USER = ConfigReader.getDbUser();
+    private static final String DB_PASS = ConfigReader.getDbPassword();
 
     public static List<String> getTestableUsernames() {
         List<String> testableUsernames = new ArrayList<>();
