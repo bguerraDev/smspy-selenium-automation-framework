@@ -17,7 +17,7 @@ public final class ConfigReader {
 
     private static void loadProperties() {
         // Try to load config.properties (optional in CI)
-        loadFromFile("config.properties");
+        loadFromFile("config.properties.example");
 
         // Try to load secret (optional)
         loadFromFile("config.properties.secret");
