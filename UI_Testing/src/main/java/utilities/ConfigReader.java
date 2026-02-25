@@ -29,13 +29,23 @@ public final class ConfigReader {
     }
 
     private static void loadFromFile(String resource) {
-        try (InputStream inputStream = ConfigReader.class.getClassLoader().getResourceAsStream(resource)) {
-            if (inputStream != null) {
-                props.load(inputStream);
-                System.out.println("Loaded config from classpath: " + resource);
-            }
+        InputStream inputStream = ConfigReader.class.getClassLoader().getResourceAsStream(resource);
+        if (inputStream == null) {
+            System.out.println("Config file not found in classpath: " + resource + " — skipping");
+            return;
+        }
+        try {
+            props.load(inputStream);
+            System.out.println("Loaded config from classpath: " + resource);
         } catch (IOException e) {
             System.err.println("Failed to load " + resource + " → " + e.getMessage());
+        } finally {
+            if (inputStream != null) {
+                try {
+                    inputStream.close();
+                } catch (IOException ignored) {
+                }
+            }
         }
     }
 
@@ -89,24 +99,34 @@ public final class ConfigReader {
     }
 
     // Add specific getters with CI-safe defaults
-    public static String getApiBaseUrl() {
-        return getProperty("api.base.url", "https://smspy-backend-pre.onrender.com/api/");
-    }
-
     public static String getBaseUrlLogin() {
-        return getProperty("base.url.login", "https://smspy-frontend-pre.onrender.com/");
+        String value = getProperty("base.url.login");
+        if (value != null && !value.isBlank()) return value;
+        return "https://smspy-frontend-pre.onrender.com/";
     }
 
     public static String getBaseUrlMessages() {
-        return getProperty("base.url.messages", "https://smspy-frontend-pre.onrender.com/messages");
+        String value = getProperty("base.url.messages");
+        if (value != null && !value.isBlank()) return value;
+        return "https://smspy-frontend-pre.onrender.com/messages";
     }
 
     public static String getBaseUrlMessagesSend() {
-        return getProperty("base.url.messages.send", "https://smspy-frontend-pre.onrender.com/messages/send");
+        String value = getProperty("base.url.messages.send");
+        if (value != null && !value.isBlank()) return value;
+        return "https://smspy-frontend-pre.onrender.com/messages/send";
     }
 
     public static String getBaseUrlProfile() {
-        return getProperty("base.url.profile", "https://smspy-frontend-pre.onrender.com/profile");
+        String value = getProperty("base.url.profile");
+        if (value != null && !value.isBlank()) return value;
+        return "https://smspy-frontend-pre.onrender.com/profile";
+    }
+
+    public static String getApiBaseUrl() {
+        String value = getProperty("api.base.url");
+        if (value != null && !value.isBlank()) return value;
+        return "https://smspy-backend-pre.onrender.com/api/";
     }
 
     public static boolean isHeadless() {
