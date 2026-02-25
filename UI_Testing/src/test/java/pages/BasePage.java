@@ -91,13 +91,24 @@ public abstract class BasePage {
         }
     }
 
-    @Step("Verify current URL is: {0}")
+    @Step("Verify current URL is: {expectedUrl}")
     protected void verifyCurrentUrl(String expectedUrl) {
-        wait.until(ExpectedConditions.urlToBe(expectedUrl));
+        System.out.println("Waiting for URL to become: " + expectedUrl);
+        System.out.println("Current URL before wait: " + driver.getCurrentUrl());
 
-        String actualUrl = driver.getCurrentUrl();
-        Assert.assertEquals(actualUrl, expectedUrl,
-                "Not on expected page. Expected: " + expectedUrl + " but was: " + actualUrl);
+        await()
+                .atMost(90, TimeUnit.SECONDS)
+                .pollInterval(1, TimeUnit.SECONDS)
+                .until(() -> {
+                    String current = driver.getCurrentUrl();
+                    System.out.println("Polling URL: " + current);
+                    return current.equals(expectedUrl);
+                });
+
+        String finalUrl = driver.getCurrentUrl();
+        System.out.println("Final URL after wait: " + finalUrl);
+        Assert.assertEquals(finalUrl, expectedUrl,
+                "Not on expected page. Expected: " + expectedUrl + " but was: " + finalUrl);
     }
 
     @Step("Upload file '{0}' to {1}")
