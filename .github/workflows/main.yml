@@ -34,6 +34,7 @@ jobs:
           BRYAN_GUERRA_PASSWORD: ${{ secrets.BRYAN_GUERRA_PASSWORD }}
           SMSPY_TEST_USER_PASSWORD: ${{ secrets.SMSPY_TEST_USER_PASSWORD }}
           GENERAL_PASSWORD: ${{ secrets.GENERAL_PASSWORD }}
+          STAGING_BRYAN1_PASSWORD: ${{ secrets.STAGING_BRYAN1_PASSWORD }}
         run: |
           mvn clean test -Dbrowser.headless=true \
             -Ddb.url=$DB_URL \

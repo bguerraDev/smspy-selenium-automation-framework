@@ -16,11 +16,16 @@ public final class ConfigReader {
     }
 
     private static void loadProperties() {
-        // 1. Load standard config.properties (base settings/templates)
+        // Try to load config.properties (optional in CI)
         loadFromFile("config.properties");
 
-        // 2. Try to load .secret file (OVERWRITE with real creds/secrets)
+        // Try to load secret (optional)
         loadFromFile("config.properties.secret");
+
+        // If nothing loaded, it's OK — use -D or defaults
+        if (props.isEmpty()) {
+            System.out.println("No config.properties found — relying on -D system properties or defaults");
+        }
     }
 
     private static void loadFromFile(String resource) {
@@ -78,10 +83,6 @@ public final class ConfigReader {
         return getProperty("base.url");
     }
 
-    public static String getBrowser() {
-        return getProperty("browser", "chrome");
-    }
-
     public static String getUsername() {
         return getProperty("username");
     }
@@ -95,11 +96,11 @@ public final class ConfigReader {
         return getProperty("api.base.url", "https://smspy-backend-pre.onrender.com/api/");
     }
 
+    public static String getBrowser() {
+        return getProperty("browser", "chrome");
+    }
+
     public static boolean isHeadless() {
-        String headless = System.getProperty("browser.headless");
-        if (headless != null && !headless.isBlank()) {
-            return Boolean.parseBoolean(headless.trim());
-        }
         return Boolean.parseBoolean(getProperty("headless", "true"));
     }
 }
