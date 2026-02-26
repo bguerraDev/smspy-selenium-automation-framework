@@ -32,8 +32,18 @@ public class BaseClient {
         return await()
                 .atMost(120, TimeUnit.SECONDS)
                 .pollInterval(4, TimeUnit.SECONDS)
-                .ignoreExceptions()  // optional: ignore connection refused etc.
-                .until(requestSupplier::get, response ->
-                        response.getStatusCode() < 500 && response.getStatusCode() != 0);
+                .ignoreExceptions() // optional: ignore connection refused etc.
+                .until(requestSupplier::get,
+                        response -> response.getStatusCode() < 500 && response.getStatusCode() != 0);
+    }
+
+    /**
+     * returns a RequestSpecification with Bearer token header
+     */
+    public static RequestSpecification getAuthSpec(String token) {
+        return new RequestSpecBuilder()
+                .addRequestSpecification(baseSpec)
+                .addHeader("Authorization", "Bearer " + token)
+                .build();
     }
 }
