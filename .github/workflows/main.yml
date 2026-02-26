@@ -34,7 +34,6 @@ jobs:
           BRYAN_GUERRA_PASSWORD: ${{ secrets.BRYAN_GUERRA_PASSWORD }}
           SMSPY_TEST_USER_PASSWORD: ${{ secrets.SMSPY_TEST_USER_PASSWORD }}
           GENERAL_PASSWORD: ${{ secrets.GENERAL_PASSWORD }}
-          STAGING_BRYAN1_PASSWORD: ${{ secrets.STAGING_BRYAN1_PASSWORD }}
         run: |
           mvn clean test -Dbrowser.headless=true \
             -Ddb.url=$DB_URL \
@@ -46,7 +45,7 @@ jobs:
             -Dtest.user.Bryan_Guerra.password=$BRYAN_GUERRA_PASSWORD \
             -Dtest.user.smspy_test_user.password=$SMSPY_TEST_USER_PASSWORD \
             -Dtest.user.general.password=$GENERAL_PASSWORD \
-            -Dstaging.bryan1.password=$STAGING_BRYAN1_PASSWORD
+            -Dbryan1.password=$BRYAN1_PASSWORD
 
       - name: Get Allure History
         uses: actions/checkout@v4
