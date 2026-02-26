@@ -37,14 +37,17 @@ public class DriverFactory {
 
                 // Optional: Headless for CI
                 if (ConfigReader.isHeadless()) {
-                    chromeOptions.addArguments("--headless");
+                    chromeOptions.addArguments("--headless=new");
                     chromeOptions.addArguments("--disable-blink-features=AutomationControlled");
                     chromeOptions.addArguments("--disable-gpu");
                     chromeOptions.addArguments("--no-sandbox");
                     chromeOptions.addArguments("--disable-dev-shm-usage");
-                    chromeOptions.addArguments("--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36");
+                    chromeOptions.addArguments(
+                            "--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36");
                     chromeOptions.addArguments("--window-size=1920,1080");
-                    chromeOptions.setExperimentalOption("excludeSwitches", List.of("enable-automation"));
+
+                    // Anti-detection options
+                    chromeOptions.setExperimentalOption("excludeSwitches", Arrays.asList("enable-automation"));
                     chromeOptions.setExperimentalOption("useAutomationExtension", false);
                 }
 
