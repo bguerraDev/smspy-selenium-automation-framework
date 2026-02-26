@@ -1,7 +1,6 @@
 # Production-Grade QA Automation Framework – SMSPy Messaging App
 
-![<image-card alt="CI Status" src="https://github.com/bguerraDev/smspy-selenium-automation-framework/actions/workflows/main.yml/badge.svg" ></image-card>](https://github.com/bguerraDev/smspy-selenium-automation-framework/actions/workflows/main.yml)
-![<image-card alt="Allure Report" src="https://img.shields.io/badge/Allure-Report-brightgreen" ></image-card>](https://bguerraDev.github.io/smspy-selenium-automation-framework/)
+[![SMSPY Automation CI](https://github.com/bguerraDev/smspy-selenium-automation-framework/actions/workflows/main.yml/badge.svg)](https://github.com/bguerraDev/smspy-selenium-automation-framework/actions/workflows/main.yml)
 
 ![Java](https://img.shields.io/badge/Java-21-blue?style=for-the-badge&logo=java&logoColor=white)
 ![Selenium](https://img.shields.io/badge/Selenium-4.27.0-green?style=for-the-badge&logo=selenium&logoColor=white)
