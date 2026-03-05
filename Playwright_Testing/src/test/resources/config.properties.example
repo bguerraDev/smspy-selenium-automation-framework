@@ -1,0 +1,17 @@
+# Environment configuration
+env=staging
+
+# Browser configuration
+browser=chrome
+headless=true
+
+# Application URLs
+base.url.login=https://smspy-frontend-pre.onrender.com/
+base.url.messages=https://smspy-frontend-pre.onrender.com/messages
+base.url.messages.send=https://smspy-frontend-pre.onrender.com/messages/send
+base.url.profile=https://smspy-frontend-pre.onrender.com/profile
+api.base.url=https://smspy-backend-pre.onrender.com/api/
+
+# Test Users
+test.user.bryan1.username=bryan1
+bryan1.password=bryan123
