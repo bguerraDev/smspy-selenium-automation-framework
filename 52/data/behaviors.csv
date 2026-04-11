@@ -1,5 +1,0 @@
-"BROKEN","EPIC","FAILED","FEATURE","PASSED","SKIPPED","STORY","UNKNOWN"
-"0","","0","Real App API Authentication","1","0","Login with all live users from database","0"
-"0","","0","SMSPy UI End-to-End Flows","1","0","Login, send message with image, and verify in inbox","0"
-"0","","0","SMSPy UI End-to-End Flows","1","0","Update profile avatar via UI","0"
-"0","","0","SMSPy UI End-to-End Flows","1","0","Login and send simple text message","0"
