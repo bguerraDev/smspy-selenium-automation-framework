@@ -1,0 +1,5 @@
+"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
+"","37263","Update profile avatar via UI","","Wed May 20 10:29:48 UTC 2026","passed","Wed May 20 10:30:26 UTC 2026","","SMSPy UI End-to-End Flows","Update profile avatar via UI",""
+"","50529","Login and send simple text message","","Wed May 20 10:29:48 UTC 2026","passed","Wed May 20 10:30:39 UTC 2026","","SMSPy UI End-to-End Flows","Login and send simple text message",""
+"","56839","Login, send message with image, and verify in inbox","","Wed May 20 10:29:48 UTC 2026","passed","Wed May 20 10:30:45 UTC 2026","","SMSPy UI End-to-End Flows","Login, send message with image, and verify in inbox",""
+"","128291","Login with all live users from database","","Wed May 20 10:27:35 UTC 2026","passed","Wed May 20 10:29:44 UTC 2026","","Real App API Authentication","Login with all live users from database",""
