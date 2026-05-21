@@ -1,0 +1,7 @@
+Status: 200
+
+Body:
+{
+    "refresh": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc3OTQ0NjY3NywiaWF0IjoxNzc5MzYwMjc3LCJqdGkiOiIyMzM1YWI2MmU1Mzg0ODdmYTUyNTIyNzU4OTUyYjAxZiIsInVzZXJfaWQiOjE5fQ.R997w_T_qT8QbEImUevhhMwG0rb7rzwoh3LemupPssE",
+    "access": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzc5MzYwNTc3LCJpYXQiOjE3NzkzNjAyNzcsImp0aSI6ImU1NGU4Y2VlMTAyNDRhMjZiM2Q0ZDI3ZjY1OWE0YjU4IiwidXNlcl9pZCI6MTl9.s4Uj3kJT-pRfLa56Yfo4mnjVBm2zTQVVWdisIWCet3o"
+}
