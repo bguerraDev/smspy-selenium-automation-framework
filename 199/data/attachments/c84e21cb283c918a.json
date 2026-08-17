@@ -1,0 +1,6 @@
+Status: 401
+
+Body:
+{
+    "detail": "Authentication credentials were not provided."
+}
