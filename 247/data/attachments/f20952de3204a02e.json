@@ -1,0 +1,5 @@
+Method: POST
+URL: https://smspy-backend-pre.onrender.com/api/token/
+
+Body:
+{"username":"user_62a1","password":"***"}
